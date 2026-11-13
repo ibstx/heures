@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Mes heures</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:linear-gradient(#78d3ff,#c4efff);--surface:#fff;--ink:#2a1f3d;--muted:#6a5f82;--line:#2a1f3d;--outline:#2a1f3d;--accent:#3fcf5a;--accent-ink:#12351b;--gold:#ffc928;--over:#ff7a1a;--track:#e3d9f5;--hero:#3b2a63;--field:#eef9ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:linear-gradient(#1d1b4b,#2b2766);--surface:#38337a;--ink:#fff;--muted:#c3bdf0;--line:#0f0d2e;--outline:#0f0d2e;--track:#221f5c;--hero:#241f55;--field:#2b2766;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:linear-gradient(#1d1b4b,#2b2766);--surface:#38337a;--ink:#fff;--muted:#c3bdf0;--line:#0f0d2e;--outline:#0f0d2e;--track:#221f5c;--hero:#241f55;--field:#2b2766;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);min-height:100%;background:var(--bg) fixed}
+*{box-sizing:border-box}
+body{margin:0;background:transparent;color:var(--ink);font:500 16px/1.45 Fredoka,"Arial Rounded MT Bold",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+h1,h2,.big,button.punch{font-family:"Lilita One",Fredoka,"Arial Rounded MT Bold",sans-serif;font-weight:400;letter-spacing:.01em}
+h1{font-size:1.9rem;margin:0 0 16px;display:flex;justify-content:space-between;align-items:center;color:#fff;text-shadow:0 3px 0 var(--outline),2px 0 0 var(--outline),-2px 0 0 var(--outline),0 -2px 0 var(--outline)}
+h2{font-size:1.3rem;margin:28px 0 10px;color:#fff;text-shadow:0 2px 0 var(--outline),1px 0 0 var(--outline),-1px 0 0 var(--outline)}
+.hero{background:var(--hero);color:#fff;border:3px solid var(--outline);border-radius:20px;padding:0 20px 18px;box-shadow:0 6px 0 var(--outline);overflow:hidden}
+.hero::before{content:"";display:block;height:14px;margin:0 -20px 16px;background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,var(--outline) 14px 28px);border-bottom:3px solid var(--outline)}
+.big{font-size:3.4rem;line-height:1;color:var(--gold);text-shadow:0 4px 0 var(--outline)}
+.sub{color:#e7e0ff;font-size:.92rem;margin-top:8px}
+.bar{height:20px;border-radius:99px;background:var(--track);border:3px solid var(--outline);margin:16px 0 8px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,#2fb94a 10px 20px)}
+.bar i.o{background:repeating-linear-gradient(-45deg,var(--over) 0 10px,#e0600a 10px 20px)}
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.rows div{background:var(--surface);border:3px solid var(--outline);border-radius:16px;padding:12px 14px;box-shadow:0 4px 0 var(--outline)}
+.rows b{display:block;font:400 1.45rem "Lilita One",Fredoka,sans-serif}
+.rows span{color:var(--muted);font-size:.85rem}
+.panel{background:var(--surface);border:3px solid var(--outline);border-radius:18px;padding:16px;box-shadow:0 5px 0 var(--outline)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:.88rem;color:var(--muted);font-weight:600}
+input{width:100%;margin-top:4px;padding:10px 12px;font:inherit;color:var(--ink);background:var(--field);border:2px solid var(--outline);border-radius:12px}
+input:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.full{grid-column:1/-1}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:14px;border:3px solid var(--outline);background:var(--surface);color:var(--ink);padding:10px 14px;box-shadow:0 4px 0 var(--outline);transition:transform .08s,box-shadow .08s}
+button:active{transform:translateY(4px);box-shadow:0 0 0 var(--outline)}
+button.main{background:var(--accent);color:var(--accent-ink)}
+button.punch{width:100%;padding:16px;font-size:1.35rem;margin-bottom:14px;background:var(--gold);color:var(--outline)}
+button.link{border:0;background:none;box-shadow:none;color:var(--muted);padding:6px 8px;font-size:.85rem}
+button.link:active{transform:none}
+h1 button.link{color:#fff;background:rgba(42,31,61,.55);border:2px solid var(--outline);border-radius:99px;font-size:.8rem;padding:4px 12px}
+.day{margin-top:16px;font-size:.92rem;color:#fff;font-weight:600;display:flex;justify-content:space-between;text-shadow:0 2px 0 var(--outline)}
+.entry{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--surface);border:3px solid var(--outline);border-radius:14px;padding:10px 12px;margin-top:8px;box-shadow:0 3px 0 var(--outline)}
+.entry small{color:var(--muted);display:block}
+.empty{color:var(--ink);padding:18px;text-align:center;background:var(--surface);border:3px dashed var(--outline);border-radius:16px}
+.hint{font-size:.85rem;color:var(--muted);margin:8px 0 0}
+#msg,main>.hint{color:#fff;text-shadow:0 1px 0 var(--outline)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.toolbar button.link{color:#fff;text-shadow:0 1px 0 var(--outline)}
+@media (prefers-reduced-motion:reduce){button{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>🏭 Mes heures <button class="link" id="theme" aria-label="Changer le thème">Thème</button></h1>
+
+<section class="hero" aria-live="polite">
+  <div class="big" id="wk">0 h 00</div>
+  <div class="sub" id="wkSub"></div>
+  <div class="bar"><i id="b1"></i><i class="o" id="b2"></i></div>
+  <div class="sub" id="wkPay"></div>
+</section>
+<div class="rows">
+  <div><b id="today">0 h 00</b><span>☀️ Aujourd’hui</span></div>
+  <div><b id="month">0 h 00</b><span id="monthSub">📅 Ce mois-ci</span></div>
+</div>
+
+<h2>⚙️ Ajouter des heures</h2>
+<div class="panel">
+  <button class="main punch" id="punch">▶ Ouvrir l’usine</button>
+  <div class="grid">
+    <label class="full">Date<input type="date" id="date"></label>
+    <label>Début<input type="time" id="start"></label>
+    <label>Fin<input type="time" id="end"></label>
+    <label>Pause (minutes)<input type="number" id="pause" min="0" step="5" value="0"></label>
+    <label>Note<input type="text" id="note" placeholder="Lieu, mission…"></label>
+    <button class="main full" id="add">Enregistrer et gagner plus !</button>
+  </div>
+  <p class="hint">Si la fin est avant le début, le calcul passe minuit (travail de nuit).</p>
+</div>
+
+<h2>🔧 Réglages</h2>
+<div class="panel grid">
+  <label>Taux horaire (€)<input type="number" id="rate" min="0" step="0.01" placeholder="À renseigner plus tard"></label>
+  <label>Objectif par semaine (h)<input type="number" id="goal" min="1" step="0.5"></label>
+  <label class="full">Majoration des heures au-delà de l’objectif (%)<input type="number" id="ot" min="0" step="1"></label>
+</div>
+
+<h2>🏆 Historique</h2>
+<div id="list"></div>
+<div class="toolbar">
+  <button id="copy">Copier en CSV</button>
+  <button id="clear" class="link">Tout effacer</button>
+</div>
+<p class="hint" id="msg"></p>
+</main>
+
+<script>
+const KEY="mes-heures-v1";
+let S={entries:[],rate:null,goal:35,ot:25,running:null};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const $=id=>document.getElementById(id);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const hm=d=>pad(d.getHours())+":"+pad(d.getMinutes());
+const fmt=m=>Math.floor(m/60)+" h "+pad(Math.round(m%60));
+const eur=v=>v.toLocaleString("fr-FR",{style:"currency",currency:"EUR"});
+const toMin=t=>{const[a,b]=t.split(":").map(Number);return a*60+b};
+function net(e){let d=toMin(e.end)-toMin(e.start);if(d<0)d+=1440;return Math.max(0,d-(+e.pause||0))}
+function monday(s){const d=new Date(s+"T12:00:00");const k=(d.getDay()+6)%7;d.setDate(d.getDate()-k);return ymd(d)}
+function pay(mins){ // mins = minutes de la semaine
+  if(!S.rate)return null;
+  const g=S.goal*60,base=Math.min(mins,g),over=Math.max(0,mins-g);
+  return (base/60)*S.rate+(over/60)*S.rate*(1+S.ot/100);
+}
+function render(){
+  const now=new Date(),today=ymd(now),wk=monday(today),mo=today.slice(0,7);
+  let tD=0,tW=0,tM=0;const weeks={};
+  S.entries.forEach(e=>{const n=net(e);
+    if(e.date===today)tD+=n;
+    if(monday(e.date)===wk)tW+=n;
+    if(e.date.slice(0,7)===mo){tM+=n;const w=monday(e.date);weeks[w]=(weeks[w]||0)+n}
+  });
+  const g=S.goal*60,over=Math.max(0,tW-g);
+  $("wk").textContent=fmt(tW);
+  $("wkSub").textContent=tW>=g?("🏆 Objectif atteint, dont "+fmt(over)+" en bonus !"):("Cette semaine · encore "+fmt(g-tW)+" pour atteindre "+S.goal+" h");
+  const tot=Math.max(tW,g);
+  $("b1").style.width=(Math.min(tW,g)/tot*100)+"%";
+  $("b2").style.width=(over/tot*100)+"%";
+  const pw=pay(tW);
+  $("wkPay").textContent=pw===null?"💰 Ajoute ton taux horaire dans les réglages pour voir ton cash estimé.":"💰 Cash brut estimé cette semaine : "+eur(pw);
+  $("today").textContent=fmt(tD);
+  $("month").textContent=fmt(tM);
+  let mp=0;if(S.rate)Object.values(weeks).forEach(m=>mp+=pay(m));
+  $("monthSub").textContent="📅 Ce mois-ci"+(S.rate?" · "+eur(mp)+" brut":"");
+  $("punch").textContent=S.running?("⏹ Fermer l’usine (ouverte à "+S.running.start+")"):"▶ Ouvrir l’usine";
+  // liste
+  const L=$("list");L.innerHTML="";
+  if(!S.entries.length){L.innerHTML='<div class="empty">Aucune heure enregistrée. Ajoute ta première journée ci-dessus.</div>';return}
+  const days={};S.entries.forEach(e=>(days[e.date]=days[e.date]||[]).push(e));
+  Object.keys(days).sort().reverse().forEach(d=>{
+    const tot=days[d].reduce((a,e)=>a+net(e),0);
+    const h=document.createElement("div");h.className="day";
+    h.innerHTML="<span></span><span></span>";
+    h.children[0].textContent=new Date(d+"T12:00:00").toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+    h.children[1].textContent=fmt(tot);L.appendChild(h);
+    days[d].forEach(e=>{
+      const r=document.createElement("div");r.className="entry";
+      const t=document.createElement("div");
+      t.innerHTML="<b></b><small></small>";
+      t.children[0].textContent=e.start+" – "+e.end+" · "+fmt(net(e));
+      t.children[1].textContent=(e.pause?"Pause "+e.pause+" min":"Sans pause")+(e.note?" · "+e.note:"");
+      const b=document.createElement("div");
+      const ed=document.createElement("button");ed.className="link";ed.textContent="Modifier";
+      ed.onclick=()=>{$("date").value=e.date;$("start").value=e.start;$("end").value=e.end;$("pause").value=e.pause;$("note").value=e.note||"";S.entries=S.entries.filter(x=>x.id!==e.id);save();render();window.scrollTo({top:0,behavior:"smooth"})};
+      const del=document.createElement("button");del.className="link";del.textContent="Supprimer";
+      del.onclick=()=>{S.entries=S.entries.filter(x=>x.id!==e.id);save();render()};
+      b.append(ed,del);r.append(t,b);L.appendChild(r);
+    });
+  });
+}
+$("add").onclick=()=>{
+  const e={id:Date.now(),date:$("date").value,start:$("start").value,end:$("end").value,pause:+$("pause").value||0,note:$("note").value.trim()};
+  if(!e.date||!e.start||!e.end){$("msg").textContent="Renseigne la date, le début et la fin.";return}
+  $("msg").textContent="";S.entries.push(e);save();$("start").value="";$("end").value="";$("note").value="";render();
+};
+$("punch").onclick=()=>{
+  const n=new Date();
+  if(!S.running){S.running={date:ymd(n),start:hm(n)};}
+  else{S.entries.push({id:Date.now(),date:S.running.date,start:S.running.start,end:hm(n),pause:+$("pause").value||0,note:$("note").value.trim()});S.running=null;$("note").value="";}
+  save();render();
+};
+[["rate",v=>v===""?null:+v],["goal",v=>+v||35],["ot",v=>v===""?0:+v]].forEach(([k,f])=>{
+  $(k).value=S[k]===null?"":S[k];
+  $(k).oninput=()=>{S[k]=f($(k).value);save();render()};
+});
+$("copy").onclick=async()=>{
+  const rows=["date;début;fin;pause_min;heures_nettes;note"].concat(S.entries.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(e=>[e.date,e.start,e.end,e.pause,(net(e)/60).toFixed(2).replace(".",","),(e.note||"").replace(/;/g,",")].join(";")));
+  try{await navigator.clipboard.writeText(rows.join("\n"));$("msg").textContent="CSV copié. Colle-le dans Excel ou Notes."}
+  catch(e){$("msg").textContent="Copie impossible ici."}
+};
+$("clear").onclick=()=>{if(confirm("Effacer toutes les heures enregistrées ?")){S.entries=[];S.running=null;save();render()}};
+$("theme").onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"};
+$("date").value=ymd(new Date());
+render();
+</script>
+</body>
+</html>
